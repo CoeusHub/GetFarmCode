@@ -23,7 +23,7 @@ onMounted(() => {
 
   const ua = navigator.userAgent.toLowerCase()
   if (/micromessenger/i.test(ua) && WX_APPID !== 'wx你的测试号appid') {
-    const authUrl = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${WX_APPID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=snsapi_base&state=wx#wechat_redirect`
+    const authUrl = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${WX_APPID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=snsapi_userinfo&state=wx#wechat_redirect`
     window.location.href = authUrl
   }
 })
@@ -32,7 +32,7 @@ watch(tab, async (val) => {
   if (val === 'wx' && !wxCode.value) {
     await nextTick()
     if (wxQrcode.value) {
-      const authUrl = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${WX_APPID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=snsapi_base&state=wx#wechat_redirect`
+      const authUrl = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${WX_APPID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=snsapi_userinfo&state=wx#wechat_redirect`
       QRCode.toCanvas(wxQrcode.value, authUrl, {
         width: 200,
         margin: 0,
